@@ -40,6 +40,8 @@ const StyledHeader = styled.div`
 
       .menuHeader {
         padding: 20px;
+        position: sticky;
+        top: 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -53,7 +55,7 @@ const StyledHeader = styled.div`
         font-weight: bold;
         font-size: 1.25em;
       }
-      .menuBody {
+      .menuAccountInfo {
         padding: 20px;
       }
       .menuAccountIcon {
@@ -82,11 +84,62 @@ const StyledHeader = styled.div`
           font-weight: bolder;
         }
       }
-      .menuItem {
+      .menuItem a {
         display: flex;
-        justify-content: flex-start;
         align-items: center;
-        margin-top: 20px;
+        padding: 15px;
+        span {
+          margin-left: 20px;
+          font-weight: 900;
+          font-size: 1.25em;
+        }
+      }
+      .menuListEnd {
+        margin: 0 15px;
+        border-bottom: 1px solid #ddd;
+      }
+      .dropdownList {
+      }
+      .dropdownItem {
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .dropdownText {
+        padding: 12px 15px;
+        position: relative;
+        width: 100%;
+        border: none;
+        background: none;
+        text-align: left;
+        &:after {
+          position: absolute;
+          content: "";
+          top: 18px;
+          right: 18px;
+          display: block;
+          width: 10px;
+          height: 10px;
+          border-right: 2px solid #000;
+          border-bottom: 2px solid #000;
+          transform: rotate(45deg);
+          transition: transform 0.1s;
+        }
+        &.open:after {
+          transform: rotate(-135deg);
+          border-color: ${color.primary};
+        }
+      }
+      .dropdownInnerItem {
+        > a {
+          padding: 12px 15px;
+          display: flex;
+          align-items: center;
+          span {
+            font-size: 16px;
+            font-weight: normal;
+            margin-left: 10px;
+          }
+        }
       }
     }
   }
@@ -130,6 +183,12 @@ const Header: React.FC = () => {
     "recommend"
   );
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [isOpenDropdownCreatorStudio, setIsOpenDropdownCreatorStudio] =
+    useState(false);
+  const [isOpenDropdownProfessionalTool, setIsOpenDropdownProfessionalTool] =
+    useState(false);
+  const [isOpenDropdownSetting, setIsOpenDropdownSetting] = useState(false);
+
   return (
     <StyledHeader>
       <header>
@@ -201,6 +260,159 @@ const Header: React.FC = () => {
                     />
                     <span>プロフィール</span>
                   </a>
+                </li>
+                <li className="menuItem">
+                  <a href="Twitter Blueのアイコン">
+                    <Image
+                      src="/images/twitter_circle.png"
+                      alt=""
+                      width={30}
+                      height={30}
+                    />
+                    <span>Twitter Blue</span>
+                  </a>
+                </li>
+                <li className="menuItem">
+                  <a href="トピックのアイコン">
+                    <Image
+                      src="/images/chat_message.png"
+                      alt=""
+                      width={30}
+                      height={30}
+                    />
+                    <span>トピック</span>
+                  </a>
+                </li>
+                <li className="menuItem">
+                  <a href="ブックマークのアイコン">
+                    <Image
+                      src="/images/bookmark.png"
+                      alt=""
+                      width={30}
+                      height={30}
+                    />
+                    <span>ブックマーク</span>
+                  </a>
+                </li>
+                <li className="menuItem">
+                  <a href="リストのアイコン">
+                    <Image
+                      src="/images/list.png"
+                      alt=""
+                      width={30}
+                      height={30}
+                    />
+                    <span>リスト</span>
+                  </a>
+                </li>
+                <li className="menuItem">
+                  <a href="Twitterサークルのアイコン">
+                    <Image
+                      src="/images/people.png"
+                      alt=""
+                      width={30}
+                      height={30}
+                    />
+                    <span>Twitterサークル</span>
+                  </a>
+                </li>
+                <li className="menuItem">
+                  <a href="認証済み組織のアイコン">
+                    <Image
+                      src="/images/check_circle.png"
+                      alt=""
+                      width={30}
+                      height={30}
+                    />
+                    <span>認証済み組織</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="menuListEnd"></div>
+            <div className="dropdownList">
+              <ul className="dropdown">
+                <li className="dropdownItem">
+                  <button
+                    className={`dropdownText ${
+                      isOpenDropdownCreatorStudio ? "open" : ""
+                    }`}
+                    onClick={() => {
+                      setIsOpenDropdownCreatorStudio(
+                        !isOpenDropdownCreatorStudio
+                      );
+                    }}
+                  >
+                    <span className="">Creator Studio</span>
+                  </button>
+                  {isOpenDropdownCreatorStudio && (
+                    <ul className="dropdownInner">
+                      <li className="dropdownInnerItem">
+                        <a href="">
+                          <Image
+                            src="/images/analytics.png"
+                            alt="アナリティクスのアイコン"
+                            width={20}
+                            height={20}
+                          />
+                          <span>アナリティクス</span>
+                        </a>
+                      </li>
+                    </ul>
+                  )}
+                </li>
+              </ul>
+              <ul className="dropdown">
+                <li className="dropdownItem">
+                  <button
+                    className={`dropdownText ${
+                      isOpenDropdownProfessionalTool ? "open" : ""
+                    }`}
+                    onClick={() => {
+                      setIsOpenDropdownProfessionalTool(
+                        !isOpenDropdownProfessionalTool
+                      );
+                    }}
+                  >
+                    <span className="">プロフェッショナルツール</span>
+                  </button>
+                  {isOpenDropdownProfessionalTool && (
+                    <ul className="dropdownInner">
+                      <li className="dropdownInnerItem">
+                        <a href="">
+                          <Image
+                            src="/images/rocket.png"
+                            alt="Twitter Proのアイコン"
+                            width={20}
+                            height={20}
+                          />
+                          <span>Twitter Pro</span>
+                        </a>
+                      </li>
+                      <li className="dropdownInnerItem">
+                        <a href="">
+                          <Image
+                            src="/images/arrow_upper_right.png"
+                            alt="Twitter広告のアイコン"
+                            width={20}
+                            height={20}
+                          />
+                          <span>Twitter広告</span>
+                        </a>
+                      </li>
+                      <li className="dropdownInnerItem">
+                        <a href="">
+                          <Image
+                            src="/images/money.png"
+                            alt="収益化のアイコン"
+                            width={20}
+                            height={20}
+                          />
+                          <span>収益化</span>
+                        </a>
+                      </li>
+                    </ul>
+                  )}
                 </li>
               </ul>
             </div>
