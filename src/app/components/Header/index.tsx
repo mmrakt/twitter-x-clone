@@ -3,7 +3,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
-import { color } from "../../const/style";
+import { color } from "../../../const/style";
+import Item from "./Dropdown/Item";
+import image from "next/image";
 
 const StyledHeader = styled.div`
   height: 100%;
@@ -45,6 +47,7 @@ const StyledHeader = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
+        background: #fff;
       }
       .menuTitle {
         font-weight: 900;
@@ -346,19 +349,11 @@ const Header: React.FC = () => {
                     <span className="">Creator Studio</span>
                   </button>
                   {isOpenDropdownCreatorStudio && (
-                    <ul className="dropdownInner">
-                      <li className="dropdownInnerItem">
-                        <a href="">
-                          <Image
-                            src="/images/analytics.png"
-                            alt="アナリティクスのアイコン"
-                            width={20}
-                            height={20}
-                          />
-                          <span>アナリティクス</span>
-                        </a>
-                      </li>
-                    </ul>
+                    <Item
+                      innerList={[
+                        { image: "analytics.png", text: "アナリティクス" },
+                      ]}
+                    />
                   )}
                 </li>
               </ul>
@@ -377,41 +372,39 @@ const Header: React.FC = () => {
                     <span className="">プロフェッショナルツール</span>
                   </button>
                   {isOpenDropdownProfessionalTool && (
-                    <ul className="dropdownInner">
-                      <li className="dropdownInnerItem">
-                        <a href="">
-                          <Image
-                            src="/images/rocket.png"
-                            alt="Twitter Proのアイコン"
-                            width={20}
-                            height={20}
-                          />
-                          <span>Twitter Pro</span>
-                        </a>
-                      </li>
-                      <li className="dropdownInnerItem">
-                        <a href="">
-                          <Image
-                            src="/images/arrow_upper_right.png"
-                            alt="Twitter広告のアイコン"
-                            width={20}
-                            height={20}
-                          />
-                          <span>Twitter広告</span>
-                        </a>
-                      </li>
-                      <li className="dropdownInnerItem">
-                        <a href="">
-                          <Image
-                            src="/images/money.png"
-                            alt="収益化のアイコン"
-                            width={20}
-                            height={20}
-                          />
-                          <span>収益化</span>
-                        </a>
-                      </li>
-                    </ul>
+                    <Item
+                      innerList={[
+                        { image: "rocket.png", text: "Twitter Pro" },
+                        { image: "arrow_upper_right.png", text: "Twitter広告" },
+                        { image: "money.png", text: "収益化" },
+                      ]}
+                    />
+                  )}
+                </li>
+              </ul>
+              <ul className="dropdown">
+                <li className="dropdownItem">
+                  <button
+                    className={`dropdownText ${
+                      isOpenDropdownSetting ? "open" : ""
+                    }`}
+                    onClick={() => {
+                      setIsOpenDropdownSetting(!isOpenDropdownSetting);
+                    }}
+                  >
+                    <span className="">設定とサポート</span>
+                  </button>
+                  {isOpenDropdownSetting && (
+                    <Item
+                      innerList={[
+                        { image: "setting.png", text: "設定とプライバシー" },
+                        { image: "question.png", text: "ヘルプセンター" },
+                        { image: "clock.png", text: "データセーバー" },
+                        { image: "paint.png", text: "表示" },
+                        { image: "a11y.png", text: "キーボードショートカット" },
+                        { image: "logout.png", text: "ログアウト" },
+                      ]}
+                    />
                   )}
                 </li>
               </ul>
