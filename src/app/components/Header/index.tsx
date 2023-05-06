@@ -5,7 +5,6 @@ import styled from "styled-components";
 import Image from "next/image";
 import { color } from "../../../const/style";
 import Item from "./Dropdown/Item";
-import image from "next/image";
 
 const StyledHeader = styled.div`
   height: 100%;
@@ -23,10 +22,12 @@ const StyledHeader = styled.div`
     }
   }
   .menuWrapper {
-    position: relative;
+    position: absolute;
+
     .menu {
       position: absolute;
       opacity: 0;
+      top: 0;
 
       &.open {
         background: #fff;
@@ -165,7 +166,7 @@ const StyledHeader = styled.div`
     top: 0;
     border-bottom: 1px solid #eee;
     button {
-      margin: 0 auto;
+      width: 100%;
       cursor: pointer;
       background: none;
       border: none;
