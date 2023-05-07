@@ -1,19 +1,27 @@
 "use client";
 
 import React from "react";
-import styled from "styled-components";
 import timeline from "../../../data/timeline.json";
 import Card from "./Card";
 
-const StyledTimeline = styled.ul``;
 const Timeline: React.FC = () => {
   const { data } = timeline;
   return (
-    <StyledTimeline>
+    <ul>
       {Object.entries(data).map((tweet) => (
-        <Card key={tweet[0]} {...tweet[1]} />
+        <Card
+          key={tweet[0]}
+          accountIcon={tweet[1].accountIcon}
+          accountName={tweet[1].accountName}
+          accountId={tweet[1].accountId}
+          tweetDate={tweet[1].tweetDate}
+          content={tweet[1].content}
+          comments={parseInt(tweet[1].comments)}
+          likes={parseInt(tweet[1].likes)}
+          retweets={parseInt(tweet[1].retweets)}
+        />
       ))}
-    </StyledTimeline>
+    </ul>
   );
 };
 
