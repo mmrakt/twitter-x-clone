@@ -1,6 +1,6 @@
 # [Twitter(X) Clone]()
 
-[Twitter(X)](https://twitter.com/) UI clone built with Next.js + Vite.
+[Twitter(X)](https://twitter.com/) UI clone built with Next.js + Styled-components.
 
 ## Getting Started
 
